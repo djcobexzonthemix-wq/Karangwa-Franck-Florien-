@@ -1,0 +1,7 @@
+{
+  "name": "Iwacu Recovery Care App",
+  "description": "A mobile application designed to help users understand their body and the effects of trauma from alcohol use through self-check quizzes and AI-powered advice.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
