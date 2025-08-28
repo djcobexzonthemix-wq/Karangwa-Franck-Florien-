@@ -49,7 +49,7 @@ const FeedbackScreen: React.FC<FeedbackScreenProps> = ({ serviceName, answers, o
 
   return (
     <div className="flex flex-col h-full bg-white">
-      <main className="flex-grow flex flex-col p-6 overflow-y-auto text-gray-800">
+      <main className="flex-grow flex flex-col p-6 text-gray-800">
         <h2 className="text-2xl font-bold text-blue-800 text-center mb-4">{t('summary_title')}</h2>
         {isLoading && (
           <div className="flex flex-col items-center justify-center flex-grow">

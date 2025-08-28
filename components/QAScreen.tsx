@@ -99,7 +99,7 @@ const QAScreen: React.FC = () => {
 
     return (
         <div className="flex flex-col h-full bg-gray-50">
-            <main className="flex-grow p-4 overflow-y-auto">
+            <main className="flex-grow p-4">
                 <div className="space-y-4">
                     {messages.map((msg, index) => (
                         <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>

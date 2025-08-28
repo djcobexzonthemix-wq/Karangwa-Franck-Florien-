@@ -14,7 +14,7 @@ const AddictionTypeScreen: React.FC<AddictionTypeScreenProps> = ({ service, onSe
 
   return (
     <div className="flex flex-col h-full bg-white">
-      <main className="flex-grow flex flex-col p-4 overflow-y-auto">
+      <main className="flex-grow flex flex-col p-4">
         <h2 className="text-2xl font-bold text-blue-800 text-center mb-6">{t('select_addiction_type')}</h2>
         <div className="space-y-3">
           {addictionTypes.map((type) => (

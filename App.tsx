@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import HomeScreen from './components/HomeScreen';
 import ServiceSelectionScreen from './components/ServiceSelectionScreen';
 import AddictionTypeScreen from './components/AddictionTypeScreen';
@@ -7,6 +7,7 @@ import FeedbackScreen from './components/FeedbackScreen';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import QAScreen from './components/QAScreen';
+import ScrollButton from './components/ScrollButton';
 import { type Service, type Answer, type Question, AddictionType } from './types';
 import { SERVICES } from './constants';
 import { useLanguage } from './contexts/LanguageContext';
@@ -19,6 +20,7 @@ const App: React.FC = () => {
   const [selectedAddictionType, setSelectedAddictionType] = useState<AddictionType | null>(null);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const { t } = useLanguage();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const currentScreen = screenHistory[screenHistory.length - 1];
 
@@ -137,9 +139,10 @@ const App: React.FC = () => {
             onBack={handleBack}
             titleKey={getHeaderTitleKey()}
         />
-        <div className="flex-grow flex flex-col overflow-hidden">
+        <div ref={scrollContainerRef} className="flex-grow flex flex-col overflow-y-auto">
            {renderScreen()}
         </div>
+        <ScrollButton scrollContainerRef={scrollContainerRef} />
         <Footer />
       </div>
     </div>
