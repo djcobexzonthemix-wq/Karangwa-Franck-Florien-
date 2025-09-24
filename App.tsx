@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import HomeScreen from './components/HomeScreen';
 import ChatScreen from './components/QAScreen';
@@ -8,6 +7,8 @@ import BookingScreen from './components/Footer';
 import ContactScreen from './components/QuestionScreen';
 import FaqScreen from './components/FeedbackScreen';
 import Header from './components/Header';
+import PrivacyPolicyScreen from './components/PrivacyPolicyScreen';
+import OfflineNotice from './components/OfflineNotice';
 
 import { type ServiceCategory } from './types';
 import { serviceCategories } from './constants';
@@ -19,7 +20,8 @@ export type Screen =
   | { name: 'service-detail', category: ServiceCategory }
   | { name: 'booking' }
   | { name: 'contact' }
-  | { name: 'faq' };
+  | { name: 'faq' }
+  | { name: 'privacy' };
 
 const App: React.FC = () => {
   const [screenStack, setScreenStack] = useState<Screen[]>([{ name: 'home' }]);
@@ -43,7 +45,6 @@ const App: React.FC = () => {
       case 'chat':
         return <ChatScreen navigateTo={navigateTo} />;
       case 'services':
-        // FIX: Pass the imported 'serviceCategories' constant to the ServicesScreen component.
         return <ServicesScreen navigateTo={navigateTo} serviceCategories={serviceCategories} />;
       case 'service-detail':
         return <ServiceDetailScreen category={currentScreen.category} navigateTo={navigateTo} />;
@@ -53,6 +54,8 @@ const App: React.FC = () => {
         return <ContactScreen />;
       case 'faq':
         return <FaqScreen />;
+      case 'privacy':
+        return <PrivacyPolicyScreen />;
       default:
         return <HomeScreen navigateTo={navigateTo} />;
     }
@@ -67,6 +70,7 @@ const App: React.FC = () => {
           case 'booking': return 'Book Face-to-Face';
           case 'contact': return 'Contact Me';
           case 'faq': return 'FAQ';
+          case 'privacy': return 'Privacy Policy';
           default: return 'Meet AI Specialist Karangwa';
       }
   };
@@ -74,6 +78,7 @@ const App: React.FC = () => {
   return (
     <div className="bg-gray-100 font-sans flex items-center justify-center min-h-screen">
       <div className="relative w-full max-w-md h-screen md:h-[800px] md:max-h-[90vh] bg-white shadow-2xl md:rounded-3xl overflow-hidden flex flex-col">
+        <OfflineNotice />
         <Header 
           title={getTitleForScreen(currentScreen)}
           showBackButton={screenStack.length > 1} 

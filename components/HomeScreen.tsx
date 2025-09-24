@@ -35,6 +35,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigateTo }) => {
           Book Face-to-Face Meeting
         </button>
       </div>
+      
+      <div className="mt-auto pt-4 pb-2">
+         <button onClick={() => navigateTo({ name: 'privacy' })} className="text-xs text-gray-400 hover:text-gray-600 hover:underline">
+          Privacy Policy
+        </button>
+      </div>
     </div>
   );
 };
