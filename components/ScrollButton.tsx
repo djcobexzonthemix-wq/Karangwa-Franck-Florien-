@@ -1,92 +1,42 @@
-import React, { useState, useEffect, useCallback } from 'react';
 
-interface ScrollButtonProps {
-  scrollContainerRef: React.RefObject<HTMLDivElement>;
+import React from 'react';
+import { Screen } from '../App';
+import { ServiceCategory } from '../types';
+import { t } from '../contexts/LanguageContext';
+
+interface ServiceDetailScreenProps {
+  category: ServiceCategory;
+  navigateTo: (screen: Screen) => void;
 }
 
-const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerRef }) => {
-  const [isAtBottom, setIsAtBottom] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const checkScrollPosition = useCallback(() => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      // Show button only if there is something to scroll
-      const hasScroll = container.scrollHeight > container.clientHeight;
-      setIsVisible(hasScroll);
-
-      // Check if at the bottom (with a 5px tolerance)
-      const atBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 5;
-      setIsAtBottom(atBottom);
-    } else {
-      setIsVisible(false);
-    }
-  }, [scrollContainerRef]);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      // Initial check
-      checkScrollPosition();
-      
-      // Add event listeners
-      container.addEventListener('scroll', checkScrollPosition);
-      window.addEventListener('resize', checkScrollPosition);
-      
-      // Observe content changes to re-evaluate scroll position
-      const observer = new MutationObserver(checkScrollPosition);
-      observer.observe(container, { childList: true, subtree: true, characterData: true });
-
-      return () => {
-        container.removeEventListener('scroll', checkScrollPosition);
-        window.removeEventListener('resize', checkScrollPosition);
-        observer.disconnect();
-      };
-    }
-  }, [scrollContainerRef, checkScrollPosition]);
-
-  const handleClick = () => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      if (isAtBottom) {
-        // Scroll to top
-        container.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-      } else {
-        // Scroll down by 80% of the container's height
-        container.scrollBy({
-          top: container.clientHeight * 0.8,
-          behavior: 'smooth',
-        });
-      }
-    }
-  };
-  
-  if (!isVisible) {
-    return null;
-  }
-
+const ServiceDetailScreen: React.FC<ServiceDetailScreenProps> = ({ category, navigateTo }) => {
   return (
-    <button
-      onClick={handleClick}
-      className="absolute bottom-24 right-6 z-20 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-      aria-label={isAtBottom ? "Scroll to top" : "Scroll down"}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-8 w-8 transition-transform duration-300"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={3}
-        style={{ transform: isAtBottom ? 'rotate(180deg)' : 'rotate(0deg)' }}
+    <div className="p-6 bg-white h-full">
+      <div className="flex items-center mb-6">
+        <div className="text-blue-600 mr-4">{React.cloneElement(category.icon, {className: "h-12 w-12"})}</div>
+        <div>
+            <h2 className="text-2xl font-bold text-gray-800">{category.title}</h2>
+            <p className="text-gray-500">{category.description}</p>
+        </div>
+      </div>
+      
+      <div className="space-y-4 mb-8">
+        {category.services.map((service, index) => (
+          <div key={index} className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
+            <h4 className="font-semibold text-gray-800">{service.title}</h4>
+            <p className="text-sm text-gray-600 mt-1">{service.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={() => navigateTo({ name: 'chat' })}
+        className="w-full flex items-center justify-center p-4 rounded-lg font-semibold text-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14m0 0l-4-4m4 4l4-4" />
-      </svg>
-    </button>
+        {t('service_detail_hire_button')}
+      </button>
+    </div>
   );
 };
 
-export default ScrollButton;
+export default ServiceDetailScreen;

@@ -1,6 +1,6 @@
 {
-  "name": "Iwacu Recovery Care App",
-  "description": "A mobile application designed to help users understand their body and the effects of trauma from alcohol use through self-check quizzes and AI-powered advice.",
+  "name": "Meet AI Specialist",
+  "description": "Your Freelance AI Partner – Smarter, Faster, Better. A professional mobile app for clients to connect with a freelance AI expert.",
   "requestFramePermissions": [
     "microphone"
   ]

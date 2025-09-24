@@ -1,35 +1,32 @@
 
 import React from 'react';
-import { type Service, AddictionType } from '../types';
-import { useLanguage } from '../contexts/LanguageContext';
+import { portfolioItems } from '../constants';
+import { t } from '../contexts/LanguageContext';
 
-interface AddictionTypeScreenProps {
-  service: Service;
-  onSelectAddictionType: (type: AddictionType) => void;
-}
-
-const AddictionTypeScreen: React.FC<AddictionTypeScreenProps> = ({ service, onSelectAddictionType }) => {
-  const { t } = useLanguage();
-  const addictionTypes = service.addictionTypes ? Object.keys(service.addictionTypes) as AddictionType[] : [];
-
+const PortfolioScreen: React.FC = () => {
   return (
-    <div className="flex flex-col h-full bg-white">
-      <main className="flex-grow flex flex-col p-4">
-        <h2 className="text-2xl font-bold text-blue-800 text-center mb-6">{t('select_addiction_type')}</h2>
-        <div className="space-y-3">
-          {addictionTypes.map((type) => (
-            <button
-              key={type}
-              onClick={() => onSelectAddictionType(type)}
-              className="w-full bg-white text-blue-700 font-semibold py-4 px-5 rounded-xl text-left shadow-md border border-blue-100 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200 transform hover:scale-[1.02]"
-            >
-              {t(service.addictionTypes![type]!.nameKey)}
-            </button>
-          ))}
-        </div>
-      </main>
+    <div className="p-4 bg-white h-full">
+      <div className="space-y-6">
+        {portfolioItems.map((item, index) => (
+          <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+            <img src={item.imageUrl} alt={item.title} className="w-full h-48 object-cover" />
+            <div className="p-4">
+              <h3 className="font-bold text-lg text-gray-800">{item.title}</h3>
+              <p className="text-gray-600 mt-1 text-sm">{item.description}</p>
+              <a 
+                href={item.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-block mt-4 text-blue-600 font-semibold hover:underline"
+              >
+                {t('portfolio_view_project')} &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default AddictionTypeScreen;
+export default PortfolioScreen;
