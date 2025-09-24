@@ -1,4 +1,5 @@
 
+
 const en = {
     // App & Navigation
     app_name: "Meet AI Specialist",
@@ -9,7 +10,6 @@ const en = {
     booking_title: "Book Face-to-Face",
     booking_confirmation_title: "Booking Confirmed",
     contact_title: "Contact Me",
-    portfolio_title: "Portfolio",
     faq_title: "FAQ",
     
     // Home Screen
@@ -46,12 +46,12 @@ const en = {
     booking_confirmation_call_button: "Call Now",
     booking_confirmation_whatsapp_button: "WhatsApp",
     booking_confirmation_email_button: "Email",
-
-    // Portfolio & FAQ
-    portfolio_view_project: "View Project",
     
     // API Error
     api_error: "Sorry, I'm having trouble connecting. Please try again later.",
+
+    // FIX: Add missing translation key for portfolio screen.
+    portfolio_view_project: "View Project",
 };
 
 export const translations = {

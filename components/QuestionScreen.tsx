@@ -31,7 +31,6 @@ const ContactScreen: React.FC = () => {
         <div className="flex justify-center space-x-6">
             <SocialIcon href={SOCIAL_LINKS.LINKEDIN} label="LinkedIn" />
             <SocialIcon href={SOCIAL_LINKS.YOUTUBE} label="YouTube" />
-            <SocialIcon href={SOCIAL_LINKS.WEBSITE} label="Website" />
         </div>
       </div>
     </div>

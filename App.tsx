@@ -1,16 +1,15 @@
+
 import React, { useState } from 'react';
 import HomeScreen from './components/HomeScreen';
 import ChatScreen from './components/QAScreen';
 import ServicesScreen from './components/ServiceSelectionScreen';
 import ServiceDetailScreen from './components/ScrollButton';
 import BookingScreen from './components/Footer';
-import BookingConfirmationScreen from './components/LanguageSelector';
 import ContactScreen from './components/QuestionScreen';
-import PortfolioScreen from './components/AddictionTypeScreen';
 import FaqScreen from './components/FeedbackScreen';
 import Header from './components/Header';
 
-import { type ServiceCategory, type BookingDetails } from './types';
+import { type ServiceCategory } from './types';
 import { serviceCategories } from './constants';
 
 export type Screen = 
@@ -19,9 +18,7 @@ export type Screen =
   | { name: 'services' }
   | { name: 'service-detail', category: ServiceCategory }
   | { name: 'booking' }
-  | { name: 'booking-confirmation', details: BookingDetails }
   | { name: 'contact' }
-  | { name: 'portfolio' }
   | { name: 'faq' };
 
 const App: React.FC = () => {
@@ -46,17 +43,14 @@ const App: React.FC = () => {
       case 'chat':
         return <ChatScreen navigateTo={navigateTo} />;
       case 'services':
+        // FIX: Pass the imported 'serviceCategories' constant to the ServicesScreen component.
         return <ServicesScreen navigateTo={navigateTo} serviceCategories={serviceCategories} />;
       case 'service-detail':
         return <ServiceDetailScreen category={currentScreen.category} navigateTo={navigateTo} />;
       case 'booking':
         return <BookingScreen navigateTo={navigateTo} />;
-      case 'booking-confirmation':
-        return <BookingConfirmationScreen details={currentScreen.details} navigateTo={navigateTo} />;
       case 'contact':
         return <ContactScreen />;
-      case 'portfolio':
-        return <PortfolioScreen />;
       case 'faq':
         return <FaqScreen />;
       default:
@@ -66,16 +60,14 @@ const App: React.FC = () => {
 
   const getTitleForScreen = (screen: Screen): string => {
       switch (screen.name) {
-          case 'home': return 'Meet AI Specialist';
+          case 'home': return 'Meet AI Specialist Karangwa';
           case 'chat': return 'AI Assistant';
           case 'services': return 'My Services';
           case 'service-detail': return screen.category.title;
-          case 'booking': return 'Book a Meeting';
-          case 'booking-confirmation': return 'Booking Confirmed';
+          case 'booking': return 'Book Face-to-Face';
           case 'contact': return 'Contact Me';
-          case 'portfolio': return 'My Portfolio';
           case 'faq': return 'FAQ';
-          default: return 'Meet AI Specialist';
+          default: return 'Meet AI Specialist Karangwa';
       }
   };
 

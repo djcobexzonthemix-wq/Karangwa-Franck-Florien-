@@ -1,14 +1,15 @@
+
 import React from 'react';
-import { ServiceCategory, PortfolioItem, FaqItem } from './types';
+// FIX: Add PortfolioItem to the import from types.
+import { ServiceCategory, FaqItem, PortfolioItem } from './types';
 
 export const CONTACT_PHONE = '0780586869';
 export const CONTACT_EMAIL = 'aisolutionsrwanda@gmail.com';
 export const CONTACT_WHATSAPP = 'https://wa.me/250780586869';
 
 export const SOCIAL_LINKS = {
-  LINKEDIN: '#',
-  YOUTUBE: '#',
-  WEBSITE: '#',
+  LINKEDIN: 'https://www.linkedin.com/in/karangwa-franck-florien-0a47ba370',
+  YOUTUBE: 'https://www.youtube.com/channel/UCeBm-efGCsO_kbTI117nSHw',
 };
 
 // FIX: Replaced JSX with React.createElement calls to be valid in a .ts file.
@@ -114,15 +115,31 @@ export const serviceCategories: ServiceCategory[] = [
   },
 ];
 
-export const portfolioItems: PortfolioItem[] = [
-    { title: 'AI Chatbot for E-commerce', description: 'Increased sales by 30% with a smart assistant.', imageUrl: 'https://picsum.photos/seed/portfolio1/400/300', link: '#' },
-    { title: 'Automated Reporting System', description: 'Saved a client 20 hours per week on manual reporting.', imageUrl: 'https://picsum.photos/seed/portfolio2/400/300', link: '#' },
-    { title: 'SEO Content Strategy', description: 'Ranked a new website on the first page of Google in 3 months.', imageUrl: 'https://picsum.photos/seed/portfolio3/400/300', link: '#' },
-];
-
 export const faqItems: FaqItem[] = [
     { question: 'What is the "chat-first" process?', answer: 'To ensure I fully understand your needs, I require a brief chat conversation before you can hire me for a service. This helps us align on the project scope, timeline, and budget, ensuring a successful outcome.' },
-    { question: 'How does the $10 face-to-face meeting work?', answer: 'This is a 30-minute introductory consultation to discuss your project in detail. The $10 fee covers the consultation time. You can book a slot, and after payment, you will receive a confirmation with my contact details to arrange the call (e.g., via Zoom, Google Meet, or phone).' },
-    { question: 'What payment methods do you accept?', answer: 'For the $10 meeting, I accept Mobile Money, PayPal, and Stripe. For larger projects, we can discuss payment terms and methods during our consultation.' },
+    { question: 'How does the face-to-face meeting work?', answer: 'This is an in-person consultation to discuss your project. The total cost is 15,000 RWF, which covers a 10,000 RWF consultation fee and a 5,000 RWF transport fee. To schedule, please contact me directly.' },
+    { question: 'What payment methods do you accept?', answer: 'I accept Mobile Money and direct bank transfers. For larger projects, payment terms can be discussed during our consultation.' },
     { question: 'What if I need a service not listed?', answer: 'Please start a chat with me! My skills are versatile. Describe your project, and I\'ll let you know if it\'s something I can help with.' },
+];
+
+// FIX: Added portfolioItems to be exported for use in the PortfolioScreen.
+export const portfolioItems: PortfolioItem[] = [
+  {
+    title: 'AI-Powered Content Generation',
+    description: 'Developed a system to generate high-quality blog posts and social media content for various clients, increasing engagement by 40%.',
+    imageUrl: 'https://images.unsplash.com/photo-1516116216624-53e697320964?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    link: '#',
+  },
+  {
+    title: 'E-commerce Chatbot Integration',
+    description: 'Integrated an intelligent chatbot into a Shopify store, handling 60% of customer queries and boosting sales through personalized recommendations.',
+    imageUrl: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    link: '#',
+  },
+  {
+    title: 'Automated Market Research Tool',
+    description: 'Built a tool that automates market research by scraping web data, analyzing trends, and generating comprehensive reports for business planning.',
+    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    link: '#',
+  },
 ];
